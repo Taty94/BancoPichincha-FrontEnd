@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1655061608583" clover="3.2.0">
+  <project timestamp="1655061608583" name="All files">
+    <metrics statements="34" coveredstatements="26" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="7" elements="46" coveredelements="37" complexity="0" loc="34" ncloc="34" packages="1" files="1" classes="1"/>
+    <file name="index.ts" path="C:\TATIANA\Banco Pichincha\FRONT END\BancoPichincha-FrontEnd\Clase8-Practica8\src\index.ts">
+      <metrics statements="34" coveredstatements="26" conditionals="4" coveredconditionals="4" methods="8" coveredmethods="7"/>
+      <line num="1" count="1" type="stmt"/>
+      <line num="11" count="1" type="stmt"/>
+      <line num="15" count="2" type="stmt"/>
+      <line num="18" count="2" type="stmt"/>
+      <line num="22" count="5" type="cond" truecount="2" falsecount="0"/>
+      <line num="23" count="2" type="stmt"/>
+      <line num="25" count="3" type="stmt"/>
+      <line num="26" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="27" count="1" type="stmt"/>
+      <line num="28" count="1" type="stmt"/>
+      <line num="30" count="2" type="stmt"/>
+      <line num="31" count="2" type="stmt"/>
+      <line num="37" count="5" type="stmt"/>
+      <line num="41" count="5" type="stmt"/>
+      <line num="45" count="5" type="stmt"/>
+      <line num="50" count="1" type="stmt"/>
+      <line num="51" count="1" type="stmt"/>
+      <line num="52" count="3" type="stmt"/>
+      <line num="54" count="1" type="stmt"/>
+      <line num="55" count="1" type="stmt"/>
+      <line num="59" count="0" type="stmt"/>
+      <line num="60" count="0" type="stmt"/>
+      <line num="61" count="0" type="stmt"/>
+      <line num="62" count="0" type="stmt"/>
+      <line num="63" count="0" type="stmt"/>
+      <line num="64" count="0" type="stmt"/>
+      <line num="66" count="0" type="stmt"/>
+      <line num="67" count="0" type="stmt"/>
+      <line num="76" count="1" type="stmt"/>
+      <line num="77" count="1" type="stmt"/>
+      <line num="78" count="1" type="stmt"/>
+      <line num="79" count="1" type="stmt"/>
+      <line num="80" count="1" type="stmt"/>
+      <line num="82" count="1" type="stmt"/>
+    </file>
+  </project>
+</coverage>

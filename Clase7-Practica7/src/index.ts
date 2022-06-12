@@ -33,8 +33,8 @@ class Factura {
         }
     }
 
-    calcularCantidad(cantidad:number){
-        return cantidad +cantidad;
+    calcularCantidad(cantidad:number, cantidad2:number){
+        return cantidad + cantidad2;
     }
 
     calcularSubtotalProducto(cantidad:number,precio:number){

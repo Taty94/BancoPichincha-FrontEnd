@@ -6,11 +6,26 @@
   "scripts": {
     "prod": "tsc && node dist/index.js",
     "tsc:init": "tsc --init",
+    "jest": "jest",
+    "jest:coverage": "jest --coverage",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tatiana Montenegro",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^28.1.1",
+    "jest": "^28.1.1",
+    "ts-jest": "^28.0.4",
     "typescript": "^4.7.3"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "node",
+    "collectionCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/test/",
+      "/dist/"
+    ]
   }
 }

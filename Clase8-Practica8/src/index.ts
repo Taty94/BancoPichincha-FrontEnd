@@ -1,6 +1,6 @@
 const uid :string = Math.random().toString(36).slice(2);
 
-interface Producto {
+export interface Producto {
     id:string,
     nombre:string,
     precio:number;
@@ -8,7 +8,7 @@ interface Producto {
     subtotal?:number;
 }
 
-class Factura {
+export class Factura {
     numFact: string;
     subtotal?: number;
     total?: number;
@@ -22,9 +22,9 @@ class Factura {
         if(this.productos.length==0){
             this.productos.push(producto);
         }else{
-            var coincide = this.productos.find(el=>el.nombre==producto.nombre);
+            var coincide = this.obtenerCoincidencia(producto.nombre);
             if(coincide!==undefined){
-                coincide.cantidad=this.calcularCantidad(coincide.cantidad);
+                coincide.cantidad=this.calcularCantidad(coincide.cantidad,producto.cantidad);
                 coincide.subtotal=this.calcularSubtotalProducto(coincide.cantidad,coincide.precio);
             }else{
                 producto.subtotal=producto.cantidad*producto.precio;
@@ -33,21 +33,26 @@ class Factura {
         }
     }
 
-    calcularCantidad(cantidad:number){
-        return cantidad +cantidad;
+    obtenerCoincidencia(nombre:string){
+        return this.productos.find(el=>el.nombre==nombre);
+    }
+
+    calcularCantidad(cantidad:number, cantidad2:number){
+        return cantidad + cantidad2;
     }
 
     calcularSubtotalProducto(cantidad:number,precio:number){
         return cantidad*precio;
     }
+
+
     calcularSubtotalesFactura():void{
         var subtotal=0;
         for(var p=0;p<this.productos.length;p++){
-            subtotal= subtotal + this.productos[p].cantidad*this.productos[p].precio;
+            subtotal= this.calcularCantidad(subtotal,this.calcularSubtotalProducto(this.productos[p].cantidad,this.productos[p].precio));
         }
         this.subtotal=subtotal;
         this.total=subtotal+(subtotal * 0.12);
-        console.log(`Subtotal = ${this.subtotal}\nTotal = ${this.total}\n`);
     }
 
     imprimirFactura():string{
@@ -62,6 +67,7 @@ class Factura {
         return impr;
     }
     
+    
 
 
 }
@@ -72,6 +78,5 @@ fact.insertarProductos({id:Math.random().toString(36).slice(2),nombre:"laptop",p
 fact.insertarProductos({id:Math.random().toString(36).slice(2),nombre:"tv",precio:1300,cantidad:1});
 fact.insertarProductos({id:Math.random().toString(36).slice(2),nombre:"camara",precio:340,cantidad:2});
 fact.insertarProductos({id:Math.random().toString(36).slice(2),nombre:"laptop",precio:500,cantidad:3});
-console.log(fact.productos);
+
 fact.calcularSubtotalesFactura();
-//fact.imprimirFactura();

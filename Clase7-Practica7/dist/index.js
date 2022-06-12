@@ -12,14 +12,20 @@ class Factura {
         else {
             var coincide = this.productos.find(el => el.nombre == producto.nombre);
             if (coincide !== undefined) {
-                coincide.cantidad = producto.cantidad + coincide.cantidad;
-                coincide.subtotal = coincide.cantidad * coincide.precio;
+                coincide.cantidad = this.calcularCantidad(coincide.cantidad);
+                coincide.subtotal = this.calcularSubtotalProducto(coincide.cantidad, coincide.precio);
             }
             else {
                 producto.subtotal = producto.cantidad * producto.precio;
                 this.productos.push(producto);
             }
         }
+    }
+    calcularCantidad(cantidad) {
+        return cantidad + cantidad;
+    }
+    calcularSubtotalProducto(cantidad, precio) {
+        return cantidad * precio;
     }
     calcularSubtotalesFactura() {
         var subtotal = 0;
