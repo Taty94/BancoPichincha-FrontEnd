@@ -1,0 +1,12 @@
+{
+  "name": "clase6-deber",
+  "version": "1.0.0",
+  "description": "Duplicar Folrdes",
+  "main": "src/index.js",
+  "scripts": {
+    "folders": "node src/index.js ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tatiana Montenegro",
+  "license": "ISC"
+}

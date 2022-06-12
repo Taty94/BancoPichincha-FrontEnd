@@ -1,0 +1,12 @@
+{
+  "name": "clase6-deber2",
+  "version": "1.0.0",
+  "description": "Deber2 FE Clase5",
+  "main": "src/index.js",
+  "scripts": {
+    "run": "node src/index.js ",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tatiana Montenegro",
+  "license": "ISC"
+}
