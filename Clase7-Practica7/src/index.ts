@@ -24,7 +24,7 @@ class Factura {
         }else{
             var coincide = this.productos.find(el=>el.nombre==producto.nombre);
             if(coincide!==undefined){
-                coincide.cantidad=this.calcularCantidad(coincide.cantidad);
+                coincide.cantidad=this.calcularCantidad(coincide.cantidad, producto.cantidad);
                 coincide.subtotal=this.calcularSubtotalProducto(coincide.cantidad,coincide.precio);
             }else{
                 producto.subtotal=producto.cantidad*producto.precio;
