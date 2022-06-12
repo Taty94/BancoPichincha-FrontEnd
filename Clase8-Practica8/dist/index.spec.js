@@ -21,10 +21,27 @@ describe("Functions Randoms", () => {
         //asserts
         expect(result).toBe(resulExpected);
     });
-    test("Obtener un string de la funcion Imprimir Factura", () => {
-        //AAA -> arranque,actuacion,asert
+    test('Verificar que la funcion obtenerCoincidencia retorne un objeto Producto', () => {
+        factura.insertarProductos({ id: "123", nombre: "laptop", precio: 500, cantidad: 2 });
+        const prod = factura.obtenerCoincidencia(factura.productos[0].nombre);
+        expect(prod).toEqual(expect.objectContaining({
+            "cantidad": 2,
+            "id": "123",
+            "nombre": "laptop",
+            "precio": 500,
+        }));
+    });
+    test("Verificar que la funcion imprimirFactura me devuelva un string", () => {
+        factura.insertarProductos({ id: "123", nombre: "laptop", precio: 500, cantidad: 2 });
+        const respuesta = factura.imprimirFactura();
         const expected = expect.any(String);
-        const result = factura.imprimirFactura();
-        expect(result).toEqual(expected);
+        expect(respuesta).toEqual(expected);
+    });
+    test("Verificar que llame dos veces la fn callback", () => {
+        factura.insertarProductos({ id: "123", nombre: "laptop", precio: 500, cantidad: 2 });
+        factura.insertarProductos({ id: "546", nombre: "tv", precio: 1300, cantidad: 1 });
+        const filterNombre = jest.fn();
+        factura.encontrarPorNombre(filterNombre);
+        expect(filterNombre).toHaveBeenCalled();
     });
 });

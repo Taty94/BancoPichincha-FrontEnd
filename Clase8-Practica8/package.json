@@ -8,6 +8,7 @@
     "tsc:init": "tsc --init",
     "jest": "jest",
     "jest:coverage": "jest --coverage",
+    "jest:watch": "jest --watchAll",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tatiana Montenegro",

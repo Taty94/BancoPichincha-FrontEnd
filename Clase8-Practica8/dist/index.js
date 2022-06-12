@@ -4,6 +4,9 @@ exports.Factura = void 0;
 const uid = Math.random().toString(36).slice(2);
 class Factura {
     constructor() {
+        this.ruc = "1721795126001";
+        this.direccion = "Turubamba Bajo - Calle OE2H y Cusubamba Casa S26-108";
+        this.telefono = "0989295810";
         this.productos = [];
         this.numFact = Math.random().toString(36).slice(2);
     }
@@ -12,7 +15,8 @@ class Factura {
             this.productos.push(producto);
         }
         else {
-            var coincide = this.obtenerCoincidencia(producto.nombre);
+            //var coincide = this.obtenerCoincidencia(producto.nombre);
+            var coincide = this.encontrarPorNombre((el) => el.nombre == producto.nombre);
             if (coincide !== undefined) {
                 coincide.cantidad = this.calcularCantidad(coincide.cantidad, producto.cantidad);
                 coincide.subtotal = this.calcularSubtotalProducto(coincide.cantidad, coincide.precio);
@@ -23,8 +27,11 @@ class Factura {
             }
         }
     }
+    encontrarPorNombre(callback) {
+        return this.productos.find(callback);
+    }
     obtenerCoincidencia(nombre) {
-        return this.productos.find(el => el.nombre == nombre);
+        return this.productos.find((el) => el.nombre == nombre);
     }
     calcularCantidad(cantidad, cantidad2) {
         return cantidad + cantidad2;
@@ -39,6 +46,7 @@ class Factura {
         }
         this.subtotal = subtotal;
         this.total = subtotal + (subtotal * 0.12);
+        console.log(`Subtotal = ${this.subtotal}\nTotal = ${this.total}\n`);
     }
     imprimirFactura() {
         this.calcularSubtotalesFactura();
@@ -49,7 +57,7 @@ class Factura {
             impr += `${count++}-> ${this.productos[p].id}   !  ${this.productos[p].nombre}    !   ${this.productos[p].cantidad} !  ${this.productos[p].precio} ! ${this.subtotal} \n`;
         }
         impr += `Subtotal = ${this.subtotal}\nTotal = ${this.total}\n`;
-        console.log(impr);
+        return impr;
     }
 }
 exports.Factura = Factura;
@@ -58,6 +66,13 @@ fact.insertarProductos({ id: Math.random().toString(36).slice(2), nombre: "lapto
 fact.insertarProductos({ id: Math.random().toString(36).slice(2), nombre: "tv", precio: 1300, cantidad: 1 });
 fact.insertarProductos({ id: Math.random().toString(36).slice(2), nombre: "camara", precio: 340, cantidad: 2 });
 fact.insertarProductos({ id: Math.random().toString(36).slice(2), nombre: "laptop", precio: 500, cantidad: 3 });
-fact.calcularSubtotalesFactura();
+console.log(`************************** FACTURA Nº ${fact.numFact} ********************`);
+console.log(`------------------------------------------------------------------------------`);
+console.log(`                         RUC  ${fact.ruc} `);
+console.log(`     DIRECCION :  ${fact.direccion} `);
+console.log(`                        TELEFONO ${fact.telefono} `);
+console.log(`------------------------------------------------------------------------------`);
+console.log(`**************************** DETALLES DE FACTURA  ************************`);
 console.log(fact.productos);
-fact.imprimirFactura();
+console.log(`**************************** TOTALES DE FACTURA  ************************`);
+fact.calcularSubtotalesFactura();

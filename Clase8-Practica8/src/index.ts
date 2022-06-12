@@ -10,6 +10,9 @@ export interface Producto {
 
 export class Factura {
     numFact: string;
+    ruc:string="1721795126001";
+    direccion:string="Turubamba Bajo - Calle OE2H y Cusubamba Casa S26-108";
+    telefono:string="0989295810";
     subtotal?: number;
     total?: number;
     productos:Producto[]=[];
@@ -22,7 +25,8 @@ export class Factura {
         if(this.productos.length==0){
             this.productos.push(producto);
         }else{
-            var coincide = this.obtenerCoincidencia(producto.nombre);
+            //var coincide = this.obtenerCoincidencia(producto.nombre);
+            var coincide = this.encontrarPorNombre((el:Producto)=>el.nombre==producto.nombre);
             if(coincide!==undefined){
                 coincide.cantidad=this.calcularCantidad(coincide.cantidad,producto.cantidad);
                 coincide.subtotal=this.calcularSubtotalProducto(coincide.cantidad,coincide.precio);
@@ -33,8 +37,12 @@ export class Factura {
         }
     }
 
+    encontrarPorNombre(callback:any){
+        return this.productos.find(callback);
+    }
+
     obtenerCoincidencia(nombre:string){
-        return this.productos.find(el=>el.nombre==nombre);
+        return this.productos.find((el:Producto)=>el.nombre==nombre);
     }
 
     calcularCantidad(cantidad:number, cantidad2:number){
@@ -53,6 +61,7 @@ export class Factura {
         }
         this.subtotal=subtotal;
         this.total=subtotal+(subtotal * 0.12);
+        console.log(`Subtotal = ${this.subtotal}\nTotal = ${this.total}\n`);
     }
 
     imprimirFactura():string{
@@ -66,9 +75,6 @@ export class Factura {
         impr+=`Subtotal = ${this.subtotal}\nTotal = ${this.total}\n`;
         return impr;
     }
-    
-    
-
 
 }
 
@@ -79,4 +85,13 @@ fact.insertarProductos({id:Math.random().toString(36).slice(2),nombre:"tv",preci
 fact.insertarProductos({id:Math.random().toString(36).slice(2),nombre:"camara",precio:340,cantidad:2});
 fact.insertarProductos({id:Math.random().toString(36).slice(2),nombre:"laptop",precio:500,cantidad:3});
 
+console.log(`************************** FACTURA Nº ${fact.numFact} ********************`);
+console.log(`------------------------------------------------------------------------------`);
+console.log(`                         RUC  ${fact.ruc} `);
+console.log(`     DIRECCION :  ${fact.direccion} `);
+console.log(`                        TELEFONO ${fact.telefono} `);
+console.log(`------------------------------------------------------------------------------`);
+console.log(`**************************** DETALLES DE FACTURA  ************************`);
+console.log(fact.productos);
+console.log(`**************************** TOTALES DE FACTURA  ************************`);
 fact.calcularSubtotalesFactura();

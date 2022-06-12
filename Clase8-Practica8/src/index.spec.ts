@@ -1,4 +1,4 @@
-import {Factura} from "./index"
+import {Factura,Producto} from "./index"
 const factura = new Factura();
 describe ("Functions Randoms", ()=>{
 
@@ -42,6 +42,31 @@ describe ("Functions Randoms", ()=>{
           })
         );
       });
-    
 
+    test("Verificar que la funcion imprimirFactura me devuelva un string", ()=>{
+        
+        factura.insertarProductos({id:"123",nombre:"laptop",precio:500,cantidad:2});
+        const respuesta =factura.imprimirFactura();
+        
+        const expected =expect.any(String)
+
+        expect(
+            respuesta
+        ).toEqual(
+            expected
+        )
+    });
+
+    test("Verificar que llame dos veces la fn callback", ()=>{
+        
+        factura.insertarProductos({id:"123",nombre:"laptop",precio:500,cantidad:2});
+        factura.insertarProductos({id:"546",nombre:"tv",precio:1300,cantidad:1});
+
+        const filterNombre = jest.fn()
+        factura.encontrarPorNombre(filterNombre);
+
+        expect(
+            filterNombre
+        ).toHaveBeenCalled();
+    });
 });
