@@ -10,7 +10,7 @@ window.addEventListener('DOMContentLoaded', function (e) {
         idAuthor: 2
     }
 
-    axios.get(apiUrl + "marvel-characters", {
+    axios.get(`${apiUrl}marvel-characters`, {
         params: {
             ...paramsRequest
         }
@@ -75,7 +75,7 @@ window.addEventListener('DOMContentLoaded', function (e) {
             category: "main"
         }
 
-        axios.post(apiUrl + "marvel-characters", data, {
+        axios.post(`${apiUrl}marvel-characters`, data, {
             params: {
                 ...paramsRequest
             }
@@ -89,14 +89,15 @@ window.addEventListener('DOMContentLoaded', function (e) {
         document.querySelectorAll(".delete").forEach(el => {
             el.addEventListener("click", e => {
                 debugger;
-                
                 const id = e.target.getAttribute("id").split("_")[1];
-                var data = {
-                    _id:id
-                }
-                axios.delete(`http://bp-marvel-api.herokuapp.com/:id?idAuthor=2`, data).then(r => {
-                    console.log(r.data)
-                    //location.reload();
+
+                axios.delete(`${apiUrl}marvel-characters/${id}`, {
+                    params: {
+                        ...paramsRequest
+                    }
+                }).then(r => {
+                    //console.log(r.data)
+                    location.reload();
                 });
             });
         });
